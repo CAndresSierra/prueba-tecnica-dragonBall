@@ -1,78 +1,94 @@
+import { ObjectId } from "mongoose";
 import CharacterModel, { ICharacterDB } from "../models/Character";
 import PlanetModel from "../models/Planet";
 import TransformationModel from "../models/Transformation";
 import { ICharacterPreload } from "./interfaces/ICharacterPreload";
-import { IPlanetPreload } from "./interfaces/IPlanetPreload";
-import { ITransformationPreload } from "./interfaces/ITransfromationPreload";
 
-export const preloadCharacters = async () => {
+export const preloadCharacters = async (): Promise<void> => {
+  const characters = await CharacterModel.find();
+
+  if (characters.length)
+    return console.log("Preload was not done because there is already data");
+
   try {
-    const characters = await CharacterModel.find();
-
-    if (characters.length)
-      return console.log(
-        "Characters preload was not done because there is already data"
-      );
     const res = await fetch(
-      "https://dragonball-api.com/api/characters?limit=58",
-      {
-        method: "GET",
-      }
+      "https://dragonball-api.com/api/characters?limit=40",
+      { method: "GET" }
     );
-    const charactersPreload = await res.json();
 
-    await charactersPreload.items.map(async (character: ICharacterPreload) => {
-      const newCharacter = CharacterModel.create(character);
-      (await newCharacter).save();
+    const allCharacters = await res.json();
+    const charactersIds: number[] = [];
+
+    await allCharacters.items.map(async (character: ICharacterPreload) => {
+      await charactersIds.push(character.id);
     });
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
 
-export const preloadPlanets = async () => {
-  try {
-    const planets = await PlanetModel.find();
-    if (planets.length)
-      return console.log(
-        "Planets preload was not done because there is already data"
+    const characterPreload: ICharacterPreload[] = [];
+
+    for await (const id of charactersIds) {
+      const res = await fetch(
+        `https://dragonball-api.com/api/characters/${id}`,
+        { method: "GET" }
       );
+      const character: ICharacterPreload = await res.json();
+      characterPreload.push(character);
+    }
 
-    const res = await fetch("https://dragonball-api.com/api/planets?limit=20", {
-      method: "GET",
-    });
-    const planetsPreload = await res.json();
+    for await (let character of characterPreload) {
+      let originplanet = await PlanetModel.findOne({
+        name: character.originPlanet.name,
+      });
 
-    await planetsPreload.items.map(async (planet: IPlanetPreload) => {
-      const newPlanet = await PlanetModel.create(planet);
-      await newPlanet.save();
-    });
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
-
-export const preloadTransformations = async () => {
-  try {
-    const transformations = await TransformationModel.find();
-    if (transformations.length)
-      return console.log(
-        "transformations preload was not done because there is already data"
-      );
-
-    const res = await fetch("https://dragonball-api.com/api/transformations", {
-      method: "GET",
-    });
-    const transformationsPreload = await res.json();
-
-    await transformationsPreload.map(
-      async (transformation: ITransformationPreload) => {
-        const newTransformation = await TransformationModel.create(
-          transformation
-        );
-        await newTransformation.save();
+      if (!originplanet) {
+        originplanet = await PlanetModel.create(character.originPlanet);
       }
-    );
+
+      const newCharacter: ICharacterDB = new CharacterModel({
+        name: character.name,
+        ki: character.ki,
+        maxKi: character.maxKi,
+        race: character.race,
+        gender: character.gender,
+        description: character.description,
+        image: character.image,
+        affiliation: character.affiliation,
+        originPlanet: originplanet._id,
+        transformations: [],
+      });
+
+      await PlanetModel.findByIdAndUpdate(originplanet._id, {
+        $push: { characters: newCharacter._id },
+      });
+
+      if (
+        Array.isArray(character.transformations) &&
+        character.transformations.length > 0
+      ) {
+        const transformationsIds: ObjectId[] = [];
+
+        for await (let transformation of character.transformations) {
+          let transformationRecord = await TransformationModel.findOne({
+            name: transformation.name,
+          });
+
+          if (!transformationRecord) {
+            transformationRecord = await TransformationModel.create({
+              name: transformation.name,
+              ki: transformation.ki,
+              image: transformation.image,
+              character: newCharacter._id,
+            });
+          }
+          transformationsIds.push(transformationRecord._id as ObjectId);
+        }
+
+        newCharacter.transformations = transformationsIds;
+      }
+
+      await newCharacter.save();
+    }
+
+    console.log("Preload Dta was done successfully ");
   } catch (error: any) {
     console.log(error.message);
   }

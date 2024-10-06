@@ -1,21 +1,29 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document, ObjectId } from "mongoose";
 
-interface IPlanetDB extends Document {
+export interface IPlanetDB extends Document {
   name: string;
   isDestroyed: boolean;
   description: string;
   image: string;
+  characters: ObjectId[];
 }
 
 const planetSchema = new Schema(
   {
-    name: { type: String, required: true },
-    isDestroyed: { type: Boolean, required: true },
-    description: { type: String, required: true },
-    image: { type: String, required: true },
+    name: { type: String, required: true, trim: true, lowercase: true },
+    isDestroyed: { type: Boolean, required: true, trim: true, lowercase: true },
+    description: { type: String, required: true, trim: true, lowercase: true },
+    image: { type: String, required: true, trim: true, lowercase: true },
+    characters: [
+      {
+        ref: "Character",
+        type: Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 

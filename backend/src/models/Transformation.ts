@@ -1,19 +1,26 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document, ObjectId } from "mongoose";
+import { ICharacterDB } from "./Character";
 
-interface ITransformationDB extends Document {
+export interface ITransformationDB extends Document {
   name: string;
   image: string;
   ki: string;
+  character: ObjectId;
 }
 
 const transformationSchema = new Schema(
   {
-    name: { type: String },
+    name: { type: String, required: true, trim: true, lowercase: true },
     image: { type: String },
     ki: { type: String },
+    character: {
+      type: Schema.Types.ObjectId,
+      ref: "Character",
+    },
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 

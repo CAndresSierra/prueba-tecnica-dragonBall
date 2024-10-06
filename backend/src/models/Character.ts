@@ -1,4 +1,6 @@
-import { Schema, Document, model } from "mongoose";
+import { Schema, Document, model, ObjectId } from "mongoose";
+import { IPlanetDB } from "./Planet";
+import { ITransformationDB } from "./Transformation";
 
 export interface ICharacterDB extends Document {
   name: string;
@@ -9,21 +11,34 @@ export interface ICharacterDB extends Document {
   description: string;
   image: string;
   affiliation: string;
+  originPlanet: ObjectId;
+  transformations: ObjectId[];
 }
 
 const characterSchema = new Schema(
   {
-    name: { type: String, required: true },
-    ki: { type: String, required: true },
-    maxKi: { type: String, required: true },
-    race: { type: String, required: true },
-    gender: { type: String, required: true },
-    description: { type: String, required: true },
-    image: { type: String, required: true },
-    affiliation: { type: String, required: true },
+    name: { type: String, required: true, trim: true, lowercase: true },
+    ki: { type: String, required: true, trim: true, lowercase: true },
+    maxKi: { type: String, required: true, trim: true, lowercase: true },
+    race: { type: String, required: true, trim: true, lowercase: true },
+    gender: { type: String, required: true, trim: true, lowercase: true },
+    description: { type: String, required: true, trim: true, lowercase: true },
+    image: { type: String, required: true, trim: true, lowercase: true },
+    affiliation: { type: String, required: true, trim: true, lowercase: true },
+    originPlanet: {
+      type: Schema.Types.ObjectId,
+      ref: "Planet",
+    },
+    transformations: [
+      {
+        ref: "Transformation",
+        type: Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 
