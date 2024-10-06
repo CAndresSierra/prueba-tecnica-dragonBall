@@ -1,4 +1,3 @@
-import { ObjectId, Schema } from "mongoose";
 import { ICharacterDto } from "../dtos/ICharacterDto";
 import CharacterModel, { ICharacterDB } from "../models/Character";
 import TransformationModel from "../models/Transformation";
@@ -20,7 +19,7 @@ export const getCharacterByIdService = async (
     .populate("originPlanet", "-characters")
     .populate("transformations", "-character");
 
-  if (!character) throw new Error("No se encontro el caracter solicitado");
+  if (!character) throw new Error("No se encontro el personaje solicitado");
 
   return character;
 };
@@ -28,45 +27,37 @@ export const getCharacterByIdService = async (
 export const updateCharacterByIdService = async (
   id: string,
   character: Partial<ICharacterDto>
-): Promise<ICharacterDB | undefined> => {
+): Promise<ICharacterDB> => {
   const characterFound = await CharacterModel.findById(id);
 
   if (!characterFound)
-    throw new Error("No se encontro el caracter a actualizar");
+    throw new Error("No se encontro el  personaje a actualizar");
 
-  if (characterFound) {
-    const characterUpdated = await CharacterModel.findByIdAndUpdate(
-      characterFound._id,
-      character,
-      { new: true }
-    );
+  const characterUpdated = await CharacterModel.findByIdAndUpdate(
+    characterFound._id,
+    character,
+    { new: true }
+  );
 
-    if (!characterUpdated || typeof characterFound === null) {
-      throw new Error("No se pudo actulizar el caracter");
-    }
-
-    return characterUpdated;
+  if (!characterUpdated || typeof characterFound === null) {
+    throw new Error("No se pudo actulizar el personaje");
   }
+
+  return characterUpdated;
 };
 
 export const deleteCharacterByIdService = async (
   id: string
-): Promise<ICharacterDB | undefined> => {
+): Promise<string> => {
   const characterFound = await CharacterModel.findById(id);
 
   if (!characterFound) {
-    throw new Error("No se encontro el caracter a eliminar");
+    throw new Error("No se encontro el personaje a eliminar");
   }
 
-  if (characterFound) {
-    const characterDeleted = await CharacterModel.findByIdAndDelete(id);
+  await CharacterModel.findByIdAndDelete(id);
 
-    if (!characterDeleted) {
-      throw new Error("No se pudo eliminar el caracter");
-    }
-
-    return characterDeleted;
-  }
+  return "Personaje eliminado con exito";
 };
 
 export const createCharacterService = async (characterDto: ICharacterDto) => {
@@ -118,7 +109,7 @@ export const createCharacterService = async (characterDto: ICharacterDto) => {
 
   await newCharacter.save();
 
-  if (!newCharacter) throw new Error("No se pudo crear el caracter");
+  if (!newCharacter) throw new Error("No se pudo crear el personaje");
 
   return newCharacter;
 };

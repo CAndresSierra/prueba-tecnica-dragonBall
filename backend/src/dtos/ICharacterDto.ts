@@ -1,5 +1,5 @@
 import { IPlanetDB } from "../models/Planet";
-import { IPlanetDto } from "./IPlanetDto";
+import { IPlanetDto } from "./IPlanetDtos";
 import { ITransformationDto } from "./ITransformationDto";
 
 export interface ICharacterDto {

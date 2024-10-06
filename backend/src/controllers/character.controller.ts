@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as characterService from "../services/characters.service";
+import * as characterService from "../services/character.service";
 import { ICharacterDB } from "../models/Character";
 import { ICharacterDto } from "../dtos/ICharacterDto";
 
@@ -101,10 +101,8 @@ export const deleteCharacterById = async (
 ): Promise<void> => {
   try {
     const { characterId } = req.params;
-    const characterDeleted = await characterService.deleteCharacterByIdService(
-      characterId
-    );
-    res.status(204);
+    await characterService.deleteCharacterByIdService(characterId);
+    res.status(204).send();
   } catch (error: any) {
     res.status(404).json({ message: error.message });
   }
