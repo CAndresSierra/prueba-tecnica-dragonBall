@@ -70,62 +70,55 @@ export const deleteCharacterByIdService = async (
 };
 
 export const createCharacterService = async (characterDto: ICharacterDto) => {
-  try {
-    const newCharacter = new CharacterModel({
-      ...characterDto,
-      transformations: [],
+  const newCharacter = new CharacterModel({
+    ...characterDto,
+    transformations: [],
+  });
+
+  for await (const transformation of characterDto.transformations) {
+    let transformationFound = await TransformationModel.findOne({
+      name: transformation.name,
     });
 
-    for await (const transformation of characterDto.transformations) {
-      let transformationFound = await TransformationModel.findOne({
+    if (!transformationFound) {
+      transformationFound = new TransformationModel({
         name: transformation.name,
+        image: transformation.image,
+        ki: transformation.ki,
       });
 
-      if (!transformationFound) {
-        transformationFound = new TransformationModel({
-          name: transformation.name,
-          image: transformation.image,
-          ki: transformation.ki,
-        });
-
-        await transformationFound.save();
-      }
-
-      transformationFound.character = newCharacter.id;
       await transformationFound.save();
-
-      newCharacter.transformations.push(transformationFound.id);
-
-      console.log(transformationFound);
     }
 
-    let originPlanetFound = await PlanetModel.findOne({
+    transformationFound.character = newCharacter.id;
+    await transformationFound.save();
+
+    newCharacter.transformations.push(transformationFound.id);
+  }
+
+  let originPlanetFound = await PlanetModel.findOne({
+    name: characterDto.originPlanet.name,
+  });
+
+  if (!originPlanetFound) {
+    originPlanetFound = new PlanetModel({
       name: characterDto.originPlanet.name,
+      isDestroyed: characterDto.originPlanet.isDestroyed,
+      description: characterDto.originPlanet.description,
+      image: characterDto.originPlanet.name,
     });
 
-    if (!originPlanetFound) {
-      originPlanetFound = new PlanetModel({
-        name: characterDto.originPlanet.name,
-        isDestroyed: characterDto.originPlanet.isDestroyed,
-        description: characterDto.originPlanet.description,
-        image: characterDto.originPlanet.name,
-      });
-
-      await originPlanetFound.save();
-    }
-
-    originPlanetFound.characters.push(newCharacter.id);
     await originPlanetFound.save();
-
-    newCharacter.originPlanet = originPlanetFound.id;
-
-    await newCharacter.save();
-
-    if (!newCharacter) throw new Error("No se pudo crear el caracter");
-
-    return newCharacter;
-  } catch (error: any) {
-    console.error("Error al crear el personaje:", error.message || error);
-    throw error;
   }
+
+  originPlanetFound.characters.push(newCharacter.id);
+  await originPlanetFound.save();
+
+  newCharacter.originPlanet = originPlanetFound.id;
+
+  await newCharacter.save();
+
+  if (!newCharacter) throw new Error("No se pudo crear el caracter");
+
+  return newCharacter;
 };
