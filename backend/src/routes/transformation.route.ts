@@ -28,7 +28,7 @@ router.delete("/:transfId", transfCtrl.deleteTransformationById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Transformation'
+ *                 $ref: '#/components/schemas/TransformationById'
  *       500:
  *         description: Error del servidor
  */

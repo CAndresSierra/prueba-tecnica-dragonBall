@@ -1,12 +1,12 @@
 import { IChracter } from "./ICharacter";
 
 export interface IOriginPlanet {
-  id: string;
+  _id: string;
   name: string;
   isDestroyed: boolean;
   description: string;
-  imageL: string;
-  charactersArray: IChracter[];
+  image: string;
+  characters: IChracter[];
   createdAt: string;
   updatedAt: string;
 }

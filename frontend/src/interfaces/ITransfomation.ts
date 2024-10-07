@@ -1,7 +1,7 @@
 import { IChracter } from "./ICharacter";
 
 export interface ITransformation {
-  id: string;
+  _id: string;
   name: string;
   image: string;
   ki: string;

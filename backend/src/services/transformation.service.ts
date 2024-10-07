@@ -6,7 +6,7 @@ import TransformationModel, {
 export const getTransformationsService = async (): Promise<
   ITransformationDB[]
 > => {
-  const tranformations = await TransformationModel.find();
+  const tranformations = await TransformationModel.find().populate("character");
 
   if (!tranformations)
     throw new Error("No se encontraron transformaciones. Lo sentimos");

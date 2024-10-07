@@ -29,7 +29,7 @@ router.delete("/:planetId", planetCtrl.deletePlanetById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/OriginPlanet'
+ *                 $ref: '#/components/schemas/OriginPlanetById'
  *       500:
  *         description: Error del servidor
  */

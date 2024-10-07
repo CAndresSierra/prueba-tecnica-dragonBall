@@ -3,16 +3,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../public/Logo.webp";
+
 import { motion } from "framer-motion";
+import Nav from "./Nav";
 
 const Header = () => {
   return (
     <header className="py-8 text-black ">
       <motion.div
-        className="flex flex-col gap-2 items-center"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+        transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
+        className="flex justify-evenly container"
       >
         <Link href="/">
           <Image
@@ -23,10 +25,9 @@ const Header = () => {
             className="rounded-full"
           />
         </Link>
-
-        <h1 className="text-xl font-bold">
-          Hecho por CS<span className="text-yellow-400">.</span>
-        </h1>
+        <div className="flex  items-center">
+          <Nav />
+        </div>
       </motion.div>
     </header>
   );

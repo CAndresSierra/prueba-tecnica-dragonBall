@@ -4,6 +4,7 @@ import "./globals.css";
 
 import Providers from "./providers";
 import Header from "@/components/Header";
+import PageTransition from "@/components/PageTransition";
 
 const workSans = Work_Sans({
   subsets: ["latin-ext"],
@@ -23,10 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={workSans.variable}>
+      <body className={`${workSans.variable} dark:bg-slate-800 bg-gray-300`}>
         <Providers>
           <Header />
-          {children}
+          <PageTransition>{children}</PageTransition>
         </Providers>
       </body>
     </html>

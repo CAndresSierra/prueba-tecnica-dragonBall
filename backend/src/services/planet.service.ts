@@ -3,7 +3,7 @@ import CharacterModel from "../models/Character";
 import PlanetModel, { IPlanetDB } from "../models/Planet";
 
 export const getPlanetsService = async (): Promise<IPlanetDB[]> => {
-  const planets = await PlanetModel.find();
+  const planets = await PlanetModel.find().populate("characters");
 
   if (!planets) throw new Error("No se encontraron planetas. Lo sentimos");
 

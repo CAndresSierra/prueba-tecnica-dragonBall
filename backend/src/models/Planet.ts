@@ -13,7 +13,7 @@ const planetSchema = new Schema(
     name: { type: String, required: true, trim: true, lowercase: true },
     isDestroyed: { type: Boolean, required: true, trim: true, lowercase: true },
     description: { type: String, required: true, trim: true, lowercase: true },
-    image: { type: String, required: true, trim: true, lowercase: true },
+    image: { type: String, required: true, trim: true },
     characters: [
       {
         ref: "Character",

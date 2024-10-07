@@ -23,7 +23,7 @@ const characterSchema = new Schema(
     race: { type: String, required: true, trim: true, lowercase: true },
     gender: { type: String, required: true, trim: true, lowercase: true },
     description: { type: String, required: true, trim: true, lowercase: true },
-    image: { type: String, required: true, trim: true, lowercase: true },
+    image: { type: String, required: true, trim: true },
     affiliation: { type: String, required: true, trim: true, lowercase: true },
     originPlanet: {
       type: Schema.Types.ObjectId,

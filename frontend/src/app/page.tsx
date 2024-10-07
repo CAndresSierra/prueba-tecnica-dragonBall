@@ -1,6 +1,6 @@
 "use client";
 
-import CharactersComponent from "@/components/CharactersComponent";
+import CharactersComponent from "@/components/Characters/CharactersComponent";
 import { IChracter } from "@/interfaces/ICharacter";
 import { useEffect, useState } from "react";
 

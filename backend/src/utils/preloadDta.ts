@@ -10,6 +10,9 @@ export const preloadCharacters = async (): Promise<void> => {
   if (characters.length)
     return console.log("Preload was not done because there is already data");
 
+  // await CharacterModel.deleteMany();
+  // await PlanetModel.deleteMany();
+  // await TransformationModel.deleteMany();
   try {
     const res = await fetch(
       "https://dragonball-api.com/api/characters?limit=40",
