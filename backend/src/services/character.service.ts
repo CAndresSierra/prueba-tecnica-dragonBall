@@ -4,9 +4,9 @@ import TransformationModel from "../models/Transformation";
 import PlanetModel from "../models/Planet";
 
 export const getCharactersService = async (): Promise<ICharacterDB[]> => {
-  const characters = await CharacterModel.find().select(
-    "-originPlanet -transformations"
-  );
+  const characters = await CharacterModel.find()
+    .populate("originPlanet")
+    .populate("transformations");
   if (!characters.length) throw new Error("No se encontraron datos");
 
   return characters;
