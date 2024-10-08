@@ -67,7 +67,7 @@ Para correr este proyecto debes añadir estas variables a tu archivo .env
 - Documentacion de los endpoints realizada con swagger
 
   
-## Documnetacion
+## Documentacion
 - Documentacion realizada con swagger, para entrar a la UI de la documentacion debes escribir la URL del servidor y /api-docs
 
 ```bash
