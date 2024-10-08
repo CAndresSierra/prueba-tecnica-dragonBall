@@ -11,3 +11,7 @@ En este sitio vas a poder ver informacion sobre muchos personajes de todo el uni
 - Vista de detalle de los personajes, transformaciones y planetas.
 - Opcion para crear un personaje al cual se le pasa su planeta(si quieres utilizar un planeta existente solo debes dar el nombre de ese planeta) y sus transformaciones
 - Barra de navegacion con modo oscuro. 
+
+## Entorno local front:
+
+- Para levantar el proyecto frontend situate en su carpeta raiz (/frontend) e ingresa este comando en la terminal
