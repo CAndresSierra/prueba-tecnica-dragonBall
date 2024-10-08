@@ -12,6 +12,7 @@ En este sitio vas a poder ver informacion sobre muchos personajes de todo el uni
 - Opcion para crear un personaje al cual se le pasa su planeta(si quieres utilizar un planeta existente solo debes dar el nombre de ese planeta) y sus transformaciones.
 - Barra de navegacion con modo oscuro.
 - Documentacion en swagger.
+- Implementacion de alertas para mejor experiencia de usuario
 
 ## Entorno local frontend:
 
