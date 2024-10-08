@@ -38,7 +38,7 @@ const CreateTransformations: React.FC<CreateTransformationsProps> = ({
       [field]: value,
     };
     setTransformations(updatedTransformations);
-    onUpdateTransformations(updatedTransformations); // Actualiza el estado en CreateCharacter
+    onUpdateTransformations(updatedTransformations);
   };
 
   const onChangeSelect = (value: string) => {
@@ -58,8 +58,25 @@ const CreateTransformations: React.FC<CreateTransformationsProps> = ({
     }
   };
   return (
-    <>
-      {numTransf && strArr ? (
+    <div className="flex flex-col gap-2">
+      <Select onValueChange={onChangeSelect}>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="¿Numero de transformaciones?" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Elige numero max: 5</SelectLabel>
+            {["1", "2", "3", "4", "5"].map((num: string, index) => {
+              return (
+                <SelectItem key={index} value={num}>
+                  {num}
+                </SelectItem>
+              );
+            })}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      {numTransf && strArr && (
         <Tabs defaultValue="1">
           <TabsList>
             {strArr.map((num: string, index) => {
@@ -215,7 +232,7 @@ const CreateTransformations: React.FC<CreateTransformationsProps> = ({
                   />
                   <Input
                     type="text"
-                    placeholder="ImagenUrl"
+                    placeholder="Imagen Url"
                     className="text-gray-950 dark:text-gray-200 font-semibold text-base w-96 h-[45px] outline-none focus:outline-none"
                     name="image"
                     onChange={(e) =>
@@ -254,7 +271,7 @@ const CreateTransformations: React.FC<CreateTransformationsProps> = ({
                   />
                   <Input
                     type="text"
-                    placeholder="Image Url"
+                    placeholder="Imagen Url"
                     className="text-gray-950 dark:text-gray-200 font-semibold text-base w-96 h-[45px] outline-none focus:outline-none"
                     name="image"
                     onChange={(e) =>
@@ -266,26 +283,8 @@ const CreateTransformations: React.FC<CreateTransformationsProps> = ({
             }
           })}
         </Tabs>
-      ) : (
-        <Select onValueChange={onChangeSelect}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="¿Numero de transformaciones?" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Elige numero max: 5</SelectLabel>
-              {["1", "2", "3", "4", "5"].map((num: string, index) => {
-                return (
-                  <SelectItem key={index} value={num}>
-                    {num}
-                  </SelectItem>
-                );
-              })}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
       )}
-    </>
+    </div>
   );
 };
 

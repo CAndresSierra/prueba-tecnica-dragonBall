@@ -53,7 +53,7 @@ const CharacterCard: React.FC<Partial<IChracter>> = ({
         </div>
         <div className="flex flex-col gap-3">
           <RemoveCharacter characterId={_id} />
-          <UpdateCharacter />
+          <UpdateCharacter characterId={_id} />
         </div>
       </div>
     </motion.div>

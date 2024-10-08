@@ -55,7 +55,7 @@ export const deleteCharacterByIdService = async (
     throw new Error("No se encontro el personaje a eliminar");
   }
 
-  await CharacterModel.findByIdAndDelete(id);
+  await CharacterModel.findByIdAndDelete(characterFound._id);
 
   return "Personaje eliminado con exito";
 };

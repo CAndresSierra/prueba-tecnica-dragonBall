@@ -1,6 +1,6 @@
 import { Schema, Document, model, ObjectId } from "mongoose";
-import { IPlanetDB } from "./Planet";
-import { ITransformationDB } from "./Transformation";
+import TransformationModel from "./Transformation";
+import PlanetModel from "./Planet";
 
 export interface ICharacterDB extends Document {
   name: string;
@@ -39,6 +39,23 @@ const characterSchema = new Schema(
   {
     timestamps: true,
     versionKey: false,
+  }
+);
+
+characterSchema.pre(
+  "findOneAndDelete",
+  async function (next: (err?: any) => void) {
+    try {
+      const character = await this.model.findOne(this.getQuery());
+
+      if (character) {
+        await TransformationModel.deleteMany({ character: character._id });
+      }
+
+      next();
+    } catch (err) {
+      next(err);
+    }
   }
 );
 

@@ -85,6 +85,11 @@ const PlanetDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             Personajes Originarios
           </h1>
           <div className="flex flex-wrap justify-evenly">
+            {!planet?.characters.length && (
+              <h1 className="text-yellow-500 font-bold text-2xl">
+                Ningun personaje encontrado....
+              </h1>
+            )}
             {planet?.characters.map((character: IChracter, index) => {
               return (
                 <Link href={`/character/${character._id}`} key={index}>

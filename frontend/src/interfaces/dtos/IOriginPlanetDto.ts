@@ -1,6 +1,6 @@
 export interface IOriginPlanetDto {
-  name: string;
+  name?: string;
   isDestroyed?: boolean;
-  description: string;
-  image: string;
+  description?: string;
+  image?: string;
 }

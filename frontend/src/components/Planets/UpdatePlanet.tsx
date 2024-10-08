@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-const UpdateCharacter: React.FC<{ characterId: string | undefined }> = ({
-  characterId,
+const UpdatePlanet: React.FC<{ planetId: string | undefined }> = ({
+  planetId,
 }) => {
   return (
     <>
-      <Link href={`updateCharacter/${characterId}`}>
+      <Link href={`updatePlanet/${planetId}`}>
         <Button
           variant="secondary"
           className="bg-blue-500/20 hover:bg-blue-500/35 rounded-3xl dark:bg-blue-500/20 dark:hover:bg-blue-500/35"
@@ -32,4 +32,4 @@ const UpdateCharacter: React.FC<{ characterId: string | undefined }> = ({
   );
 };
 
-export default UpdateCharacter;
+export default UpdatePlanet;

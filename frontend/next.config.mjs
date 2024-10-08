@@ -7,7 +7,7 @@ const nextConfig = {
         hostname: "dragonball-api.com",
       },
     ],
-    domains: ["e7.pngegg.com"],
+    domains: ["e7.pngegg.com", "i.pinimg.com", "static.wikia.nocookie.net"],
   },
 };
 

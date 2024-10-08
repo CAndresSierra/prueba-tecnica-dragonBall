@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { ApiCharacterUrl } from "@/config/envs";
 import Swal from "sweetalert2";
+import { Button } from "../ui/button";
+import { ApiPlanetsUrl } from "@/config/envs";
 
-const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
-  characterId,
+const RemovePlanet: React.FC<{ planetId: string | undefined }> = ({
+  planetId,
 }) => {
-  const handleRemoveCharacter = async () => {
+  const handleRemovePlanet = async () => {
     Swal.fire({
-      title: "Estas seguro de eliminar el personaje?",
+      title: "Estas seguro de eliminar el planeta?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -16,14 +16,14 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
       cancelButtonText: "Cerrar",
     }).then((result) => {
       if (result.isConfirmed) {
-        const removeCharacter = async () => {
+        const removePlanet = async () => {
           try {
-            await fetch(`${ApiCharacterUrl}/${characterId}`, {
+            await fetch(`${ApiPlanetsUrl}/${planetId}`, {
               method: "DELETE",
             });
             await Swal.fire({
               title: "Elimando!",
-              text: "Has eliminado el personaje con exito!",
+              text: "Has eliminado el planeta con exito!",
               icon: "success",
             });
 
@@ -36,7 +36,7 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
             });
           }
         };
-        removeCharacter();
+        removePlanet();
       }
     });
   };
@@ -46,7 +46,7 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
       <Button
         variant="secondary"
         className="bg-red-500/20 hover:bg-red-500/35 rounded-3xl dark:bg-red-500/20 dark:hover:bg-red-500/35"
-        onClick={handleRemoveCharacter}
+        onClick={handleRemovePlanet}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,4 +70,4 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
   );
 };
 
-export default RemoveCharacter;
+export default RemovePlanet;

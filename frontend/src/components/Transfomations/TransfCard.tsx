@@ -1,4 +1,3 @@
-import { IChracter } from "@/interfaces/ICharacter";
 import { ITransformation } from "@/interfaces/ITransfomation";
 import {
   Button,
@@ -8,6 +7,8 @@ import {
 } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import RemoveTransf from "./RemoveTransf";
+import UpdateTransf from "./UpdateTransf";
 
 const TransfCard: React.FC<Partial<ITransformation>> = ({
   _id,
@@ -18,7 +19,7 @@ const TransfCard: React.FC<Partial<ITransformation>> = ({
 }) => {
   return (
     <motion.div
-      className="w-[300px] h-[600px] rounded-2xl flex flex-col gap-1 items-center bg-gradient-to-t from-[#0f172a] via-[#19233b] to-[#fb923c]"
+      className="w-[300px] h-[600px] rounded-2xl flex flex-col gap-1 shadow-2xl items-center bg-gradient-to-t from-[#0f172a] via-[#19233b] to-[#fb923c]"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
@@ -74,6 +75,12 @@ const TransfCard: React.FC<Partial<ITransformation>> = ({
           </div>
         </PopoverContent>
       </Popover>
+      <div>
+        <div className="flex gap-3 w-full justify-center py-2">
+          <RemoveTransf transfId={_id} />
+          <UpdateTransf transfId={_id} />
+        </div>
+      </div>
     </motion.div>
   );
 };

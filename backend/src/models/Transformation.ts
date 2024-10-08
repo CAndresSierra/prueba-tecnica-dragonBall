@@ -1,5 +1,4 @@
 import { model, Schema, Document, ObjectId } from "mongoose";
-import { ICharacterDB } from "./Character";
 
 export interface ITransformationDB extends Document {
   name: string;
