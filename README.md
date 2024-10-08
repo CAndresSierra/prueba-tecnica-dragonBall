@@ -42,8 +42,10 @@ Para correr este proyecto debes añadir estas variables a tu archivo .env.develo
 
 Para correr este proyecto debes añadir estas variables a tu archivo .env
 
-`PORT= Puerto en el cual deseas que corra el servidor`
+`PORT= Puerto en el cual deseas que corra el servidor` 
+
 `MONGO_DB_URI= URI para conectarte a la DB de MongoDB`
+
 `SERVER_URL= URL del servidor ejemplo: http://localhost:3001`
 
 
