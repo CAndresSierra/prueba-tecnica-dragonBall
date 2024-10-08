@@ -7,7 +7,8 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
 }) => {
   const handleRemoveCharacter = async () => {
     Swal.fire({
-      title: "Estas seguro de eliminar el personaje?",
+      title:
+        "¿Estas seguro de eliminar el personaje?, se eliminaran sus transformaciones tambien",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -22,15 +23,15 @@ const RemoveCharacter: React.FC<{ characterId: string | undefined }> = ({
               method: "DELETE",
             });
             await Swal.fire({
-              title: "Elimando!",
-              text: "Has eliminado el personaje con exito!",
+              title: "¡Elimando!",
+              text: "¡Haz eliminado el personaje con exito!",
               icon: "success",
             });
 
             window.location.reload();
           } catch (error: any) {
             Swal.fire({
-              title: "Ha ocurrido un error!",
+              title: "¡Ha ocurrido un error!",
               text: `${error.message}`,
               icon: "error",
             });

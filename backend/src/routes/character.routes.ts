@@ -12,7 +12,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  * @swagger
  * components:
  *   schemas:
- *     TransformationById:
+ *     TransformationPopulate:
  *       type: object
  *       required:
  *         - name
@@ -54,7 +54,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *
  *
  *
- *     OriginPlanetById:
+ *     OriginPlanetPopulate:
  *       type: object
  *       required:
  *         - name
@@ -77,7 +77,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *         characters:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/Character'
+ *             $ref: '#/components/schemas/CharacterPopulate'
  *
  *     OriginPlanet:
  *       type: object
@@ -105,7 +105,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *             type: string
  *             description: Id de el personaje
  *
- *     CharacterById:
+ *     CharacterPopulate:
  *       type: object
  *       required:
  *         - id
@@ -148,11 +148,11 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *           type: string
  *           description: El grupo o afiliación del personaje
  *         originPlanet:
- *           $ref: '#/components/schemas/OriginPlanetById'
+ *           $ref: '#/components/schemas/OriginPlanetPopulate'
  *         transformations:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/TransformationById'
+ *             $ref: '#/components/schemas/TransformationPopulate'
  *       example:
  *         id: "6701ef2528a40b03937e53ea"
  *         name: "goku"
@@ -258,7 +258,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/CharacterById'
+ *                 $ref: '#/components/schemas/CharacterPopulate'
  *       500:
  *         description: Error del servidor
  *
@@ -372,7 +372,7 @@ router.delete("/:characterId", characterCtrl.deleteCharacterById);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/CharacterById'
+ *               $ref: '#/components/schemas/CharacterPopulate'
  *       404:
  *         description: El personaje no fue encontrado
  *   put:

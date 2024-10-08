@@ -7,7 +7,7 @@ const RemoveTransf: React.FC<{ transfId: string | undefined }> = ({
 }) => {
   const handleRemoveTransf = async () => {
     Swal.fire({
-      title: "Estas seguro de eliminar la transformacion?",
+      title: "¿Estas seguro de eliminar la transformación?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -23,7 +23,7 @@ const RemoveTransf: React.FC<{ transfId: string | undefined }> = ({
             });
             await Swal.fire({
               title: "Elimando!",
-              text: "Has eliminado la transformacion con exito!",
+              text: "¡Haz eliminado la transformación con exito!",
               icon: "success",
             });
 

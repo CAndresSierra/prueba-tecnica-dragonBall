@@ -28,7 +28,7 @@ router.delete("/:transfId", transfCtrl.deleteTransformationById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/TransformationById'
+ *                 $ref: '#/components/schemas/TransformationPopulate'
  *       500:
  *         description: Error del servidor
  */
@@ -52,7 +52,7 @@ router.delete("/:transfId", transfCtrl.deleteTransformationById);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/TransformationById'
+ *               $ref: '#/components/schemas/TransformationPopulate'
  *       404:
  *         description: La transformacion no fue encontrado
  *

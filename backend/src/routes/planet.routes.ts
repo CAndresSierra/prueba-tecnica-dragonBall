@@ -29,7 +29,7 @@ router.delete("/:planetId", planetCtrl.deletePlanetById);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/OriginPlanetById'
+ *                 $ref: '#/components/schemas/OriginPlanetPopulate'
  *       500:
  *         description: Error del servidor
  */
@@ -53,7 +53,7 @@ router.delete("/:planetId", planetCtrl.deletePlanetById);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/OriginPlanetById'
+ *               $ref: '#/components/schemas/OriginPlanetPopulate'
  *       404:
  *         description: El planeta no fue encontrado
  *   put:

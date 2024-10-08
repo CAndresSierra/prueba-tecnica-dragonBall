@@ -7,7 +7,7 @@ const RemovePlanet: React.FC<{ planetId: string | undefined }> = ({
 }) => {
   const handleRemovePlanet = async () => {
     Swal.fire({
-      title: "Estas seguro de eliminar el planeta?",
+      title: "¿Estas seguro de eliminar el planeta?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -23,14 +23,14 @@ const RemovePlanet: React.FC<{ planetId: string | undefined }> = ({
             });
             await Swal.fire({
               title: "Elimando!",
-              text: "Has eliminado el planeta con exito!",
+              text: "¡Haz eliminado el planeta con exito!",
               icon: "success",
             });
 
             window.location.reload();
           } catch (error: any) {
             Swal.fire({
-              title: "Ha ocurrido un error!",
+              title: "¡Ha ocurrido un error!",
               text: `${error.message}`,
               icon: "error",
             });
