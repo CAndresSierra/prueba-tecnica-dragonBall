@@ -6,12 +6,19 @@ En este sitio vas a poder ver informacion sobre muchos personajes de todo el uni
 ## EL SITIO CUENTA CON LAS SIGUIENTES APARTADOS:
 
 1 Vista de todos los personajes con sus opciones de eliminacion(si eliminas un personaje se eliminan sus transformaciones en cascada) y edicion.
+
 2 Vista de todas las transformaciones con sus opciones de eliminacion y edicion.
+
 3 Vista de todos los planetas con sus opciones de eliminacion y edicion.
+
 4 Vista de detalle de los personajes, transformaciones y planetas.
+
 5 Opcion para crear un personaje al cual se le pasa su planeta(si quieres utilizar un planeta existente solo debes dar el nombre de ese planeta) y sus transformaciones.
+
 6 Barra de navegacion con modo oscuro.
+
 7 Documentacion en swagger.
+
 8 Implementacion de alertas para mejor experiencia de usuario
 
 ## Entorno local frontend:
