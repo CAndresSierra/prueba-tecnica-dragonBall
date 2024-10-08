@@ -5,6 +5,7 @@ import "./globals.css";
 import Providers from "./providers";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
+import Footer from "@/components/Footer";
 
 const workSans = Work_Sans({
   subsets: ["latin-ext"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <PageTransition>{children}</PageTransition>
+          <Footer />
         </Providers>
       </body>
     </html>

@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: "dragonball-api.com",
       },
     ],
+    domains: ["e7.pngegg.com"],
   },
 };
 

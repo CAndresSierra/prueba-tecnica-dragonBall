@@ -11,14 +11,15 @@ import { Button } from "@nextui-org/react";
 import { Card, CardBody, CardFooter } from "@nextui-org/react";
 import Link from "next/link";
 import { ITransformation } from "@/interfaces/ITransfomation";
-import { div } from "framer-motion/client";
+import Loading from "@/app/loading";
 
 const CharacterDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
   const [character, setCharacter] = useState<IChracter | undefined>();
-  console.log(character);
+  const [skeleton, setSkeleton] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchDta = async () => {
+      setSkeleton(true);
       try {
         const res = await fetch(`${ApiCharacterUrl}/${params.id}`, {
           method: "GET",
@@ -29,11 +30,21 @@ const CharacterDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
         setCharacter(data);
       } catch (error: any) {
         console.log(error.message);
+      } finally {
+        setSkeleton(false);
       }
     };
 
     fetchDta();
   }, []);
+
+  if (skeleton) {
+    return (
+      <div className="flex  container items-start justify-center h-screen w-screen">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="flex  container justify-evenly py-10 ">

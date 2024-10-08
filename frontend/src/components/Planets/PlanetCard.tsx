@@ -8,7 +8,6 @@ import {
   Button,
 } from "@nextui-org/react";
 import { IChracter } from "@/interfaces/ICharacter";
-import { h1 } from "framer-motion/client";
 
 const PlanetCard: React.FC<Partial<IOriginPlanet>> = ({
   _id,

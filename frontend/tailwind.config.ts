@@ -13,17 +13,19 @@ const config: Config = {
       center: true,
       padding: "10px",
     },
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
     fontFamily: {
       primary: "var(--font-work-sans)",
     },
+    extend: {
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      colors: {},
+    },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(), require("tailwindcss-animate")],
 };
 export default config;

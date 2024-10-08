@@ -1,6 +1,9 @@
 import { IChracter } from "@/interfaces/ICharacter";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import RemoveCharacter from "./RemoveCharacter";
+import UpdateCharacter from "./UpdateCharacter";
+import { channel } from "diagnostics_channel";
 
 const CharacterCard: React.FC<Partial<IChracter>> = ({
   _id,
@@ -13,7 +16,7 @@ const CharacterCard: React.FC<Partial<IChracter>> = ({
 }) => {
   return (
     <motion.div
-      className="w-[300px] h-[600px] rounded-2xl flex flex-col gap-1 items-center bg-gradient-to-t from-[#0f172a] via-[#19233b] to-[#fb923c]"
+      className="w-[300px] h-[600px] rounded-2xl flex flex-col gap-1 items-center bg-gradient-to-t from-[#0f172a] via-[#19233b] to-[#fb923c] shadow-2xl"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
@@ -37,16 +40,21 @@ const CharacterCard: React.FC<Partial<IChracter>> = ({
           {race} - {gender}
         </h1>
       </span>
-
-      <div className="flex flex-col w-full px-5">
-        <span className="flex flex-col w-full  justify-center gap-0  items-start">
-          <strong className="text-orange-400 text-xl">ki: </strong>
-          <h1 className="text-lg text-gray-200">{ki}</h1>
-        </span>
-        <span className="flex flex-col w-full justify-center  items-start">
-          <strong className="text-orange-400 text-xl">MaxKi: </strong>
-          <h1 className="text-lg text-gray-200">{maxKi}</h1>
-        </span>
+      <div className="flex gap-1 w-full">
+        <div className="flex flex-col w-[75%] px-5">
+          <span className="flex flex-col w-full  justify-center gap-0  items-start">
+            <strong className="text-orange-400 text-xl">ki: </strong>
+            <h1 className="text-lg text-gray-200">{ki}</h1>
+          </span>
+          <span className="flex flex-col w-full justify-center  items-start">
+            <strong className="text-orange-400 text-xl">MaxKi: </strong>
+            <h1 className="text-lg text-gray-200">{maxKi}</h1>
+          </span>
+        </div>
+        <div className="flex flex-col gap-3">
+          <RemoveCharacter characterId={_id} />
+          <UpdateCharacter />
+        </div>
       </div>
     </motion.div>
   );

@@ -5,6 +5,9 @@
   body {
     @apply font-primary;
   }
+  :root {
+    --radius: 0.5rem;
+  }
 }
 
 body {

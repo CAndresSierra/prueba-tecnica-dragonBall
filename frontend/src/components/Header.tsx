@@ -13,7 +13,7 @@ const Header = () => {
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
+        transition={{ delay: 1, duration: 0.8, ease: "easeInOut" }}
         className="flex justify-evenly container"
       >
         <Link href="/">

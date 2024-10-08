@@ -96,7 +96,7 @@ export const createCharacterService = async (characterDto: ICharacterDto) => {
       name: characterDto.originPlanet.name,
       isDestroyed: characterDto.originPlanet.isDestroyed,
       description: characterDto.originPlanet.description,
-      image: characterDto.originPlanet.name,
+      image: characterDto.originPlanet.image,
     });
 
     await originPlanetFound.save();
