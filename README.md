@@ -24,7 +24,7 @@ En este sitio vas a poder ver informacion sobre muchos personajes de todo el uni
 
 ## Variables de entorno Front
 
-Para correr este proyecto debes añadir estas variables a tu archivo .env.development
+Para correr este proyecto debes añadir estas variables a tu archivo .env.local
 
 `NEXT_PUBLIC_API_CHARACTERS= Endpoint para characters (personajes) http://localhost:PUERTO/api/characters`
 
