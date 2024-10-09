@@ -1,25 +1,25 @@
 
 # Dragon Ball App (Prueba tecnica para Dazlabs)
 
-En este sitio vas a poder ver informacion sobre muchos personajes de todo el universo de dragon ball, incluyendo derivados como transformaciones y planetas.
+En este sitio vas a poder ver información sobre muchos personajes de todo el universo de Dragon Ball, incluyendo derivados como transformaciones y planetas.
 
 ## EL SITIO CUENTA CON LAS SIGUIENTES APARTADOS:
 
-1 Vista de todos los personajes con sus opciones de eliminacion(si eliminas un personaje se eliminan sus transformaciones en cascada) y edicion.
+1 Vista de todos los personajes con sus opciones de eliminación (si eliminas un personaje, se eliminan sus transformaciones en cascada) y edición.
 
-2 Vista de todas las transformaciones con sus opciones de eliminacion y edicion.
+2 Vista de todas las transformaciones con sus opciones de eliminación y edición.
 
-3 Vista de todos los planetas con sus opciones de eliminacion y edicion.
+3 Vista de todos los planetas con sus opciones de eliminación y edición.
 
 4 Vista de detalle de los personajes, transformaciones y planetas.
 
-5 Opcion para crear un personaje al cual se le pasa su planeta(si quieres utilizar un planeta existente solo debes dar el nombre de ese planeta) y sus transformaciones.
+5 Opción para crear un personaje al cual se le pasa su planeta (si quieres utilizar un planeta existente, solo debes dar el nombre de ese planeta) y sus transformaciones.
 
-6 Barra de navegacion con modo oscuro.
+6 Barra de navegación con modo oscuro.
 
-7 Documentacion en swagger.
+7 Documentación en swagger.
 
-8 Implementacion de alertas para mejor experiencia de usuario
+8 Implementación de alertas para mejor experiencia de usuario
 
 ## Entorno local frontend:
 
