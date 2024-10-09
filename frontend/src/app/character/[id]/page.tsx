@@ -151,54 +151,59 @@ const CharacterDetail: React.FC<{ params: { id: string } }> = ({ params }) => {
             Planeta de origen
           </h1>
           <div className="flex justify-between gap-5">
-            <div className="flex flex-col justify-between items-center">
-              {character?.originPlanet.image ? (
-                <div className="w-[300px] h-[200px]">
-                  <Image
-                    src={character?.originPlanet.image!}
-                    alt="Imagen del planeta"
-                    width={300}
-                    height={200}
-                    className="rounded-3xl shadow-xl w-full h-full"
-                  />
-                </div>
-              ) : (
-                <h1>No se encontro la imagen</h1>
-              )}
-              <Link href={`/planets/${character?.originPlanet._id}`}>
-                <Button
-                  variant="faded"
-                  className="w-[150px] bg-gray-950 text-yellow-500 font-bold border-2 border-yellow-500"
-                >
-                  Ver Detalle
-                </Button>
-              </Link>
-            </div>
-            <div className="flex flex-col gap-2 w-[50%]">
-              <h1 className="text-3xl font-bold text-yellow-500">
-                <strong className="dark:text-gray-200 text-gray-950">
-                  Nombre:
-                </strong>{" "}
-                {character?.originPlanet.name}
-              </h1>
-              {character?.originPlanet.isDestroyed ? (
-                <span className="border-2 border-red-800 flex items-center justify-center py-1 rounded-full">
-                  <h1 className="text-base font-bold text-red-800">
-                    Planera Destruido
-                  </h1>
-                </span>
-              ) : (
-                <span className="border-2 border-green-700 flex items-center justify-center py-1 rounded-full">
-                  <h1 className="text-base font-bold text-green-700">
-                    Planera Activo
-                  </h1>
-                </span>
-              )}
+            {character?.originPlanet ? (
+              <>
+                <div className="flex flex-col justify-between items-center">
+                  <div className="w-[300px] h-[200px]">
+                    <Image
+                      src={character?.originPlanet.image!}
+                      alt="Imagen del planeta"
+                      width={300}
+                      height={200}
+                      className="rounded-3xl shadow-xl w-full h-full"
+                    />
+                  </div>
 
-              <p className="text-justify font-semibold dark:text-gray-200/80 text-gray-950/90">
-                {character?.originPlanet.description}
-              </p>
-            </div>
+                  <Link href={`/planets/${character?.originPlanet._id}`}>
+                    <Button
+                      variant="faded"
+                      className="w-[150px] bg-gray-950 text-yellow-500 font-bold border-2 border-yellow-500"
+                    >
+                      Ver Detalle
+                    </Button>
+                  </Link>
+                </div>
+                <div className="flex flex-col gap-2 w-[50%]">
+                  <h1 className="text-3xl font-bold text-yellow-500">
+                    <strong className="dark:text-gray-200 text-gray-950">
+                      Nombre:
+                    </strong>{" "}
+                    {character?.originPlanet.name}
+                  </h1>
+                  {character?.originPlanet.isDestroyed ? (
+                    <span className="border-2 border-red-800 flex items-center justify-center py-1 rounded-full">
+                      <h1 className="text-base font-bold text-red-800">
+                        Planeta Destruido
+                      </h1>
+                    </span>
+                  ) : (
+                    <span className="border-2 border-green-700 flex items-center justify-center py-1 rounded-full">
+                      <h1 className="text-base font-bold text-green-700">
+                        Planeta Activo
+                      </h1>
+                    </span>
+                  )}
+
+                  <p className="text-justify font-semibold dark:text-gray-200/80 text-gray-950/90">
+                    {character?.originPlanet.description}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <h1 className="text-yellow-500 text-2xl font-bold">
+                El planeta fue eliminado
+              </h1>
+            )}
           </div>
         </div>
 
